@@ -1,7 +1,27 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using RazorPagesMovie.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+string ConnectionStringKey = "RazorPagesMovieContext";
+if (!builder.Environment.IsDevelopment())
+{
+    ConnectionStringKey = "ProductionMovieContext";
+}
+
+builder.Services.AddDbContext<RazorPagesMovieContext>(
+    options =>
+    {
+        if (String.IsNullOrEmpty(builder.Configuration.GetConnectionString(ConnectionStringKey)))
+        {
+            throw new InvalidOperationException($"Connection string {ConnectionStringKey} not found.");
+        }
+        options.UseSqlite(builder.Configuration.GetConnectionString(ConnectionStringKey));
+    }
+);
 
 var app = builder.Build();
 
