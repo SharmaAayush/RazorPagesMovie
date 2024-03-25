@@ -399,3 +399,5 @@ FodyWeavers.xsd
 
 # Generated SQLite DB file
 RazorPagesMovieContext-083603a4-5ff0-4820-9838-d56848b555e9.db
+RazorPagesMovieContext-083603a4-5ff0-4820-9838-d56848b555e9.db-shm
+RazorPagesMovieContext-083603a4-5ff0-4820-9838-d56848b555e9.db-wal
